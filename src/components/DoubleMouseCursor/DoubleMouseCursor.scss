@@ -1,0 +1,26 @@
+
+
+
+.kripsonui-double-mouse-cursor{
+
+    position: fixed;
+    background-color: white;
+    border-radius: 1000px;
+    width: 10px;
+    height: 10px;
+    mix-blend-mode: difference;
+    z-index: 10000; 
+
+    .kripsonui-cursor-trail{
+        position: fixed;
+        background-color: aqua;
+        border-radius: 1000px;
+        width: 20px;
+        height: 20px;
+        mix-blend-mode: difference;
+        z-index: 10000000;
+        pointer-events : none;
+        transition: width 0.15s, height 0.15s;
+    
+    }
+}

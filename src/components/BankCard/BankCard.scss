@@ -1,0 +1,181 @@
+// @import url('https://fonts.cdnfonts.com/css/credit-card');
+@import '../../variable.scss';
+
+@font-face {
+    font-family: "Credit Card";
+    src: url("../../assets/fonts/CREDC.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "OCR";
+    src: url("../../assets/fonts/OCR.ttf") format('truetype');
+}
+
+.kripsonui-bankcard {
+
+    position: relative;
+    perspective: 1000px;
+    width: calc($s1 * 50);
+    height: calc($s1 * 30);
+    min-height: fit-content;
+    border-radius: $s2;
+    color: $bankCardTextColor;
+    
+    * {
+        box-sizing: border-box;
+    }
+
+    .kripsonui-content{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        transform-style: preserve-3d;
+        transition: transform 1s;
+        border-radius: $s2;
+        background-color: $bankCardBackground;
+
+
+        &.invalid-card {
+            border: calc($s1/4) solid $errorColor;
+            animation-name: errorShake;
+            animation-duration: 0.25s;
+            animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+            
+            &:hover {
+                    transform: rotateY(180deg);          
+            }
+
+            .kripsonui-banknumber{
+                position: relative;
+            }
+            .kripsonui-error-text {
+                font-family: 'OCR', sans-serif;
+                font-size: $s1;
+                margin: 0;
+                position: absolute;
+                left: 0;
+                bottom: -$s2;
+            }
+        }
+
+    }
+
+    .kripsonui-content.flipped {
+        transform: rotateY(180deg);
+    }
+
+    &:hover {
+
+        .kripsonui-content {
+            transform: rotateY(180deg);
+        }
+    }
+
+
+    .kripsonui-front, .kripsonui-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        padding: $s4;
+        border-radius: $s2;
+        display: grid;
+        gap: $s2;
+        backface-visibility: hidden;
+        overflow: hidden;
+        background-color: $bankCardBackground;
+    }
+
+    
+
+    .kripsonui-back{
+        transform: rotateY( 180deg );
+        padding: unset;
+        align-content: start;
+        gap: $s1;
+
+        .kripsonui-back-stripe{
+            background-color: black;
+            height: $s8;
+            margin-top: $s2;
+        }
+
+        .kripsonui-back-cvc-section{
+            background-color: rgb(167, 167, 167);
+            margin: $s1;
+            text-align: right;
+            padding: $s1;
+            font-family: 'OCR';
+            min-height: $s4;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+        }
+    }
+
+
+
+
+
+
+    .kripsonui-card-chip {
+        width: $s6;
+        height: $s6;
+    }
+
+    h2,
+    h6 {
+        font-family: 'OCR', sans-serif;
+        margin: $s1 0;
+    }
+
+    .kripsonui-expiry-section {
+        display: flex;
+        align-items: center;
+        gap: $s1;
+    }
+
+    .kripsonui-card-logo-section {
+        position: absolute;
+        right: $s1;
+        bottom: $s1;
+
+        img {
+            width: 80px;
+
+        }
+    }
+}
+
+
+
+@keyframes errorShake {
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-$s1);
+    }
+
+    50% {
+        transform: translateX($s1);
+    }
+
+    75% {
+        transform: translateX(-$s1);
+    }
+
+    95% {
+        transform: translateX($s1);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+}

@@ -1,0 +1,50 @@
+@import '../../variable.scss';
+
+.kripsonui-theme-changer{
+    width: $s8;
+    height: $s4;
+    border: calc($s1/4) solid $primaryTextColor;
+    border-radius: $s2;
+    padding: calc($s1/2);
+
+    &:has(.kripsonui-change-ball.dark){
+        background-color: $themeChangerDarkBackgroundColor;
+    }
+
+    &:has(.kripsonui-change-ball.light){
+        background-color: $themeChangerLightBackgroundColor;
+    }
+
+    .kripsonui-change-ball{
+        width: $s4;
+        height: 99%;
+        border-radius: $s2;
+        margin-left: 0;
+        margin-right: 0;
+        transition: all 0.25s;
+
+        &.dark{
+            margin-left: auto;
+            background-color: $themeChangerMoonColor;
+            position: relative;
+
+            &::before{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 75%;
+                height: 75%;
+                border-radius: 100%;
+
+                background-color: $themeChangerDarkBackgroundColor;
+                content: '';
+            }
+        }
+
+        &.light{
+            margin-right: auto;
+            background-color: $themeChangerSunColor;
+        }
+    }
+
+}

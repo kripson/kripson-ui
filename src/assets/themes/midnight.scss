@@ -1,0 +1,344 @@
+//spacing 
+$s1: 8px;
+$s2: calc($s1 * 2);
+$s3: calc($s1 * 3);
+$s4: calc($s1 * 4);
+$s5: calc($s1 * 5);
+$s6: calc($s1 * 6);
+$s7: calc($s1 * 7);
+$s8: calc($s1 * 8);
+$s9: calc($s1 * 9);
+$s10: calc($s1 * 10);
+
+
+//colors
+$errorColor: #DC3535;
+$bankCardBackground: #27113688;
+$bankCardTextColor: #d448ff;
+$primaryTextColor: #ebebeb;
+$themeChangerSunColor: #eee12e;
+$themeChangerMoonColor: #ad5ed1;
+$themeChangerLightBackgroundColor: #52daf1;
+$themeChangerDarkBackgroundColor: #252525;
+
+
+
+
+//theme changer styles
+
+.kripsonui-theme-changer{
+    width: $s8;
+    height: $s4;
+    border: calc($s1/4) solid $bankCardTextColor;
+    border-radius: $s2;
+    padding: calc($s1/2);
+    display: grid;
+    position: relative;
+    transition: all 0.25s;
+
+    &:has(.kripsonui-change-ball.dark){
+        background-color: $themeChangerDarkBackgroundColor;
+    }
+
+    &:has(.kripsonui-change-ball.light){
+        background-color: $themeChangerLightBackgroundColor;
+    }
+
+    .kripsonui-change-ball{
+        width: $s4;
+        height: $s4;
+        border-radius: $s2;
+        transition: all 0.25s;
+        position: absolute;
+        right: calc($s1/2);
+        top: 10%;
+
+        &.dark{
+            justify-self: right;
+            background-color: $themeChangerMoonColor;
+            right: calc($s1/2);
+            border: calc($s1/10) solid $bankCardTextColor;
+            box-shadow: 0 0 $s1 $bankCardTextColor;
+
+            &::before{
+                position: absolute;
+                top: - calc($s1/8);
+                left: - calc($s1/8);
+                width: 75%;
+                height: 75%;
+                border-radius: 100%;
+                border: calc($s1/8) solid $bankCardTextColor;
+                background-color: $themeChangerDarkBackgroundColor;
+                content: '';
+                display: none;
+            }
+        }
+
+        &.light{
+            right: calc($s9/2);
+            justify-self: left;
+            background-color: $themeChangerSunColor;
+        }
+    }
+
+}
+
+
+//bankcard styles
+@font-face {
+    font-family: "Credit Card";
+    src: url("../fonts/CREDC.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "OCR";
+    src: url("../fonts/OCR.ttf") format('truetype');
+}
+
+.kripsonui-bankcard {
+
+    position: relative;
+    perspective: 1000px;
+    width: calc($s1 * 50);
+    height: calc($s1 * 30);
+    min-height: fit-content;
+    border-radius: $s2;
+    color: $bankCardTextColor;
+
+    &:hover{
+        #hover-sound{
+            display: block !important;
+        }
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .kripsonui-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        transform-style: preserve-3d;
+        transition: transform 1s;
+        border-radius: $s2;
+        background-color: $bankCardBackground;
+        border: calc($s1/4) solid $bankCardTextColor;
+        box-shadow: 0 0 $s1 $bankCardTextColor, 0 0 $s3 $bankCardTextColor inset;
+        color: $bankCardTextColor;
+
+
+        &.invalid-card {
+            border: calc($s1/4) solid $errorColor;
+            animation-name: errorShake;
+            animation-duration: 0.25s;
+            animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+            &:hover {
+                transform: rotateY(180deg);
+            }
+
+            .kripsonui-banknumber {
+                position: relative;
+            }
+
+            .kripsonui-error-text {
+                font-family: 'OCR', sans-serif;
+                font-size: $s1;
+                margin: 0;
+                position: absolute;
+                left: 0;
+                bottom: -$s2;
+            }
+        }
+
+    }
+
+    .kripsonui-content.flipped {
+        transform: rotateY(180deg);
+    }
+
+    &:hover {
+
+        .kripsonui-content {
+            transform: rotateY(180deg);
+            box-shadow: 0 0 $s1 $bankCardTextColor, 0 0 $s5 $bankCardTextColor inset;
+        }
+    }
+
+
+    .kripsonui-front,
+    .kripsonui-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        padding: $s4;
+        border-radius: $s2;
+        display: grid;
+        gap: $s2;
+        backface-visibility: hidden;
+        overflow: hidden;
+        background-color: $bankCardBackground;
+    }
+
+
+
+    .kripsonui-back {
+        transform: rotateY(180deg);
+        padding: unset;
+        align-content: start;
+        gap: $s1;
+
+        .kripsonui-back-stripe {
+            background-color: black;
+            height: $s8;
+            margin-top: $s2;
+        }
+
+        .kripsonui-back-cvc-section {
+            background-color: rgb(167, 167, 167);
+            margin: $s1;
+            text-align: right;
+            padding: $s1;
+            font-family: 'OCR';
+            min-height: $s4;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+        }
+    }
+
+
+
+
+
+
+    .kripsonui-card-chip {
+        width: $s6;
+        height: $s6;
+    }
+
+    h2,
+    h6 {
+        font-family: 'OCR', sans-serif;
+        margin: $s1 0;
+    }
+
+    .kripsonui-expiry-section {
+        display: flex;
+        align-items: center;
+        gap: $s1;
+    }
+
+    .kripsonui-card-logo-section {
+        position: absolute;
+        right: $s1;
+        bottom: $s1;
+
+        img {
+            width: 80px;
+
+        }
+    }
+}
+
+
+
+@keyframes errorShake {
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-$s1);
+    }
+
+    50% {
+        transform: translateX($s1);
+    }
+
+    75% {
+        transform: translateX(-$s1);
+    }
+
+    95% {
+        transform: translateX($s1);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+}
+
+
+
+//glasscard styles
+
+.kripsonui-glass-card {
+    backdrop-filter: blur(calc($s1/1.5));
+    padding: $s1 * 4;
+    border-radius: $s1;
+    position: relative;
+    overflow: hidden;
+    max-width: fit-content;
+    border: calc($s1/4) solid $bankCardTextColor;
+    box-shadow: 0 0 $s1 $bankCardTextColor, 0 0 $s3 $bankCardTextColor inset;
+    transition: box-shadow 0.25s;
+    color: $bankCardTextColor;
+    font-family: 'OCR', sans-serif;
+
+    &:hover {
+        box-shadow: 0 0 $s1 $bankCardTextColor, 0 0 $s5 $bankCardTextColor inset;
+
+    }
+
+    .kripsonui-glass-card-background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        opacity: 0.5;
+        z-index: -1;
+        background-color: $bankCardBackground;
+        
+        &:hover{
+            #hover-sound{
+                display: block !important;
+            }
+        }
+    }
+}
+
+
+//doubleMouse Cursor
+
+.kripsonui-double-mouse-cursor {
+
+    position: fixed;
+    background-color: white;
+    border-radius: 1000px;
+    width: 10px;
+    height: 10px;
+    mix-blend-mode: difference;
+    z-index: 10000;
+
+    .kripsonui-cursor-trail {
+        position: fixed;
+        background-color: aqua;
+        border-radius: 1000px;
+        width: 20px;
+        height: 20px;
+        mix-blend-mode: difference;
+        z-index: 10000000;
+        pointer-events: none;
+        transition: width 0.15s, height 0.15s;
+
+    }
+}

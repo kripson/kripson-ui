@@ -1,0 +1,217 @@
+.kripsonui-theme-changer {
+  width: 64px;
+  height: 32px;
+  border: 2px solid #ebebeb;
+  border-radius: 16px;
+  padding: 4px;
+}
+.kripsonui-theme-changer:has(.kripsonui-change-ball.dark) {
+  background-color: #252525;
+}
+.kripsonui-theme-changer:has(.kripsonui-change-ball.light) {
+  background-color: #52daf1;
+}
+.kripsonui-theme-changer .kripsonui-change-ball {
+  width: 32px;
+  height: 99%;
+  border-radius: 16px;
+  margin-left: 0;
+  margin-right: 0;
+  transition: all 0.25s;
+}
+.kripsonui-theme-changer .kripsonui-change-ball.dark {
+  margin-left: auto;
+  background-color: #f0f0f0;
+  position: relative;
+}
+.kripsonui-theme-changer .kripsonui-change-ball.dark::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 75%;
+  height: 75%;
+  border-radius: 100%;
+  background-color: #252525;
+  content: "";
+}
+.kripsonui-theme-changer .kripsonui-change-ball.light {
+  margin-right: auto;
+  background-color: #eee12e;
+}
+
+@font-face {
+  font-family: "Credit Card";
+  src: url("../fonts/CREDC.ttf") format("truetype");
+}
+@font-face {
+  font-family: "OCR";
+  src: url("../fonts/OCR.ttf") format("truetype");
+}
+.kripsonui-bankcard {
+  position: relative;
+  perspective: 1000px;
+  width: 400px;
+  height: 240px;
+  min-height: fit-content;
+  border-radius: 16px;
+  color: rgba(233, 206, 241, 0.9176470588);
+}
+.kripsonui-bankcard * {
+  box-sizing: border-box;
+}
+.kripsonui-bankcard .kripsonui-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  border-radius: 16px;
+  background-color: rgba(193, 100, 255, 0.5333333333);
+}
+.kripsonui-bankcard .kripsonui-content.invalid-card {
+  border: 2px solid #DC3535;
+  animation-name: errorShake;
+  animation-duration: 0.25s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.kripsonui-bankcard .kripsonui-content.invalid-card:hover {
+  transform: rotateY(180deg);
+}
+.kripsonui-bankcard .kripsonui-content.invalid-card .kripsonui-banknumber {
+  position: relative;
+}
+.kripsonui-bankcard .kripsonui-content.invalid-card .kripsonui-error-text {
+  font-family: "OCR", sans-serif;
+  font-size: 8px;
+  margin: 0;
+  position: absolute;
+  left: 0;
+  bottom: -16px;
+}
+.kripsonui-bankcard .kripsonui-content.flipped {
+  transform: rotateY(180deg);
+}
+.kripsonui-bankcard:hover .kripsonui-content {
+  transform: rotateY(180deg);
+}
+.kripsonui-bankcard .kripsonui-front, .kripsonui-bankcard .kripsonui-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding: 32px;
+  border-radius: 16px;
+  display: grid;
+  gap: 16px;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background-color: rgba(193, 100, 255, 0.5333333333);
+}
+.kripsonui-bankcard .kripsonui-back {
+  transform: rotateY(180deg);
+  padding: unset;
+  align-content: start;
+  gap: 8px;
+}
+.kripsonui-bankcard .kripsonui-back .kripsonui-back-stripe {
+  background-color: black;
+  height: 64px;
+  margin-top: 16px;
+}
+.kripsonui-bankcard .kripsonui-back .kripsonui-back-cvc-section {
+  background-color: rgb(167, 167, 167);
+  margin: 8px;
+  text-align: right;
+  padding: 8px;
+  font-family: "OCR";
+  min-height: 32px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.kripsonui-bankcard .kripsonui-card-chip {
+  width: 48px;
+  height: 48px;
+}
+.kripsonui-bankcard h2,
+.kripsonui-bankcard h6 {
+  font-family: "OCR", sans-serif;
+  margin: 8px 0;
+}
+.kripsonui-bankcard .kripsonui-expiry-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.kripsonui-bankcard .kripsonui-card-logo-section {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+}
+.kripsonui-bankcard .kripsonui-card-logo-section img {
+  width: 80px;
+}
+
+@keyframes errorShake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-8px);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+  75% {
+    transform: translateX(-8px);
+  }
+  95% {
+    transform: translateX(8px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.kripsonui-glass-card {
+  backdrop-filter: blur(5.3333333333px);
+  padding: 32px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  max-width: fit-content;
+}
+.kripsonui-glass-card .kripsonui-glass-card-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0.15;
+  z-index: -1;
+}
+
+.kripsonui-double-mouse-cursor {
+  position: fixed;
+  background-color: white;
+  border-radius: 1000px;
+  width: 10px;
+  height: 10px;
+  mix-blend-mode: difference;
+  z-index: 10000;
+}
+.kripsonui-double-mouse-cursor .kripsonui-cursor-trail {
+  position: fixed;
+  background-color: aqua;
+  border-radius: 1000px;
+  width: 20px;
+  height: 20px;
+  mix-blend-mode: difference;
+  z-index: 10000000;
+  pointer-events: none;
+  transition: width 0.15s, height 0.15s;
+}
+
+/*# sourceMappingURL=midnight.css.map */

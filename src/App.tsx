@@ -4,6 +4,7 @@ import BankCard from "./components/BankCard/BankCard";
 import DoubleMouseCursor from "./components/DoubleMouseCursor/DoubleMouseCursor";
 import GlassCard from "./components/GlassCard/GlassCard";
 import ThemeChanger from "./components/ThemeChanger/ThemeChanger";
+import './assets/themes/midnight.scss';
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <div className="App">
+      
       <GlassCard>
         <h1>Hello</h1>
       </GlassCard>

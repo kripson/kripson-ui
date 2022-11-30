@@ -1,6 +1,6 @@
 {
   "name": "kripson-ui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "files": [
     "dist"
@@ -15,7 +15,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && sass ./src/assets/themes/:./public/themes/ && vite build",
     "preview": "vite preview"
   },
   "peerDependencies": {

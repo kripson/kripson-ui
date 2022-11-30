@@ -5,6 +5,7 @@ import VISA from "../../assets/images/visa.png";
 import AE from "../../assets/images/AE.webp";
 import CardChip from "../../assets/images/Card Chip.svg";
 import validator from "validator";
+import SoundEffects from "../SoundEffects/SoundEffects";
 
 type ComponentWithChildProps = React.PropsWithChildren<{ bankNumber: string; flipped?:boolean, name?: string; expiry: string; cvc: string; styles?: Record<string, string | number> }>;
 
@@ -43,6 +44,7 @@ const BankCard: FC<ComponentWithChildProps> = ({ bankNumber, expiry, cvc, styles
   return (
     <div className={`kripsonui-bankcard`} >
       <div className={`kripsonui-content ${flipped ? 'flipped': ''}  ${bankNumber && !validator.isNumeric(bankNumber) ? "invalid-card" : ""}`} style={{ ...styles }}>
+        <SoundEffects/>
         <div className="kripsonui-front face" style={{ backgroundColor: styles?.backgroundColor ? styles.backgroundColor as 'BackgroundColor | undefined' : '' }}>
           <img className="kripsonui-card-chip" src={CardChip} alt="card chip" />
           <div className="kripsonui-banknumber">
